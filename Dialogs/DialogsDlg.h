@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "MsgDlg.h"
 
 
 // CDialogsDlg dialog
@@ -17,12 +18,13 @@ public:
 	enum { IDD = IDD_DIALOGS_DIALOG };
 #endif
 
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+	afx_msg void OnClickedFileopen();
+	afx_msg void OnClickedExit();
+	afx_msg void OnClickedBcustomdialog();
+	CString m_sResults;
 
-
-// Implementation
 protected:
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	HICON m_hIcon;
 
 	// Generated message map functions
@@ -30,8 +32,9 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+
+private:
+	CMsgDlg m_dMsgDlg;
 public:
-	afx_msg void OnClickedFileopen();
-	CString m_sResults;
-	afx_msg void OnClickedExit();
+	afx_msg void OnClickedBwhichoption();
 };

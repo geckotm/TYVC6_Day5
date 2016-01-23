@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "Dialogs.h"
+#include "MsgDlg.h"
 #include "DialogsDlg.h"
 #include "afxdialogex.h"
 
@@ -34,6 +35,8 @@ BEGIN_MESSAGE_MAP(CDialogsDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_FILEOPEN, &CDialogsDlg::OnClickedFileopen)
 	ON_BN_CLICKED(IDC_EXIT, &CDialogsDlg::OnClickedExit)
+	ON_BN_CLICKED(IDC_BCUSTOMDIALOG, &CDialogsDlg::OnClickedBcustomdialog)
+	ON_BN_CLICKED(IDC_BWHICHOPTION, &CDialogsDlg::OnClickedBwhichoption)
 END_MESSAGE_MAP()
 
 
@@ -109,4 +112,42 @@ void CDialogsDlg::OnClickedFileopen()
 void CDialogsDlg::OnClickedExit()
 {
 	OnOK();
+}
+
+
+void CDialogsDlg::OnClickedBcustomdialog()
+{
+	// TODO: Add your control notification handler code here
+
+	if (m_dMsgDlg.DoModal() == IDOK)
+	{
+		//The user pressed OK, display what he has typed in the main dialog
+		m_sResults = m_dMsgDlg.m_sMessage;
+		//update DialogsDlg
+		UpdateData(FALSE);
+	}
+}
+
+
+void CDialogsDlg::OnClickedBwhichoption()
+{
+	switch (m_dMsgDlg.m_iOption)
+	{
+	case 0:
+		m_sResults = _T("Option 1 was selected");
+		break;
+	case 1:
+		m_sResults = _T("Option 2 was selected");
+		break;
+	case 2:
+		m_sResults = _T("Option 1 was selected");
+		break;
+	case 3:
+		m_sResults = _T("Option 2 was selected");
+		break;
+	default:
+		m_sResults = _T("No option was selected");
+		break;
+	}
+	UpdateData(FALSE);
 }
